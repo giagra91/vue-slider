@@ -41,7 +41,7 @@
                                 <div class="main-carousel position-relative" :class="(index === indexImage) ? `` : `d-none`" 
                                 v-for="(element, index) in images">
                                     <img :src="element.image" :alt="element.place">
-                                    <div class="my-carousel-info text-white text-center position-absolute bottom-0 pe-2">
+                                    <div class="my-carousel-info text-white text-center position-absolute bottom-0 py-2">
                                         <h3>{{element.place}}</h3>
                                         <p>{{element.text}}</p>
                                     </div>
