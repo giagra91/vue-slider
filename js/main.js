@@ -5,6 +5,12 @@ let root = new Vue(
             indexImage : 0,
             scrollImage : null,
             check : true,
+            isNextDirection : true,
+            newImages : {
+                titleImg : "",
+                descriptionImg : "",
+                urlImg : ""
+            },
             images : [
                 {
                 place: 'Svezia',
@@ -53,15 +59,39 @@ let root = new Vue(
                 this.indexImage= thumbIndex;
             },
             autoScroll(){
-                this.scrollImage = setInterval(this.nextImage, 3000);
+                this.scrollImage = setInterval(() =>{
+                    if(this.isNextDirection){
+                        this.nextImage();
+                    } else {
+                        this.prevImage();
+                    }
+                }, 3000);
             },
             stopScroll(){
                 clearInterval(this.scrollImage);
                 this.scrollImage=null
             },
+            addToList(){
+                if(this.newImages.titleImg == "" || this.newImages.descriptionImg == "" || this.newImages.urlImg == ""){
+                    console.log(`errore dati inseriti`)
+                } else {
+                    this.images.push({
+                        place : this.newImages.titleImg,
+                        text : this.newImages.descriptionImg,
+                        image : this.newImages.urlImg,
+                })
+                } 
+                this.titleImg = "",
+                this.descriptionImg = "",
+                this.urlImg = ""
+                console.log(this.newImages.titleImg);
+            },
+            changeDirection(){
+                this.isNextDirection = !this.isNextDirection;
+            }
         },
         updated(){
-            console.log("ciao")
+            console.log("ciao");
         }
     },
 )
